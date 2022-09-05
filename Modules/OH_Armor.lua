@@ -40,3 +40,4 @@ end
 
 function AM_GetUnitDefaultArmor(unit)
     return UNITS_DATA[GetUnitTypeId(unit)].DEF_ARMOR
+end
