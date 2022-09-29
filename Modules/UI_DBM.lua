@@ -1,3 +1,7 @@
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
 function DBM_Initialize()
     TriggerRegisterTimerEventPeriodic(DBM_TimerTrigger, 0.01)
     TriggerAddAction(DBM_TimerTrigger, DBM_RefreshTimers)

@@ -7,3 +7,5 @@ oldAddEffect = AddSpecialEffectTargetUnitBJ
 
 oldGetUnitMS = GetUnitMoveSpeed
 oldSetUnitMS = SetUnitMoveSpeed
+
+oldBlzFrameSetVisible = BlzFrameSetVisible

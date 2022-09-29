@@ -11,6 +11,8 @@ persistent_keys = {
     ,'u_id'
 }
 
+START_X,START_Y = -14080.0,-14870.0
+
 ---------------------
 ---------------------
 
@@ -68,3 +70,27 @@ ARENA_ACTIVATED = false
 ARENA_FOG_MODIFIERS = {}
 
 STARTING_ZONE = nil
+
+----------------------------------------------------
+-------------------UI FADEOUT-----------------------
+----------------------------------------------------
+
+UI_FADEOUT_DATA = {}
+
+CASTMAIN_DATA = {}
+CASTMAIN_TRIGGER = CreateTrigger()
+
+CASTSYS_DATA = {}
+CASTSYS_FRAMES = {}
+CASTSYS_HIDDEN = {}
+CASTSYS_DEF_FRAME_HEIGHT = nil
+CASTSYS_TRIGGER = CreateTrigger()
+CASTSYS_BUTTON_TRIGGER = CreateTrigger()
+
+----------------------------------------------------
+-------------COOLDOWN SYSTEM SETUP------------------
+----------------------------------------------------
+
+COOLDOWN_TABLE = {}
+COOLDOWN_TRIGGER = CreateTrigger()
+COOLDOWN_ABILITIES = {}

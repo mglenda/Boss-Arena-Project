@@ -1,3 +1,7 @@
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
 function WIDGET_Initializte()
     TriggerAddAction(BOSS_WIDGETS_TARGET_TRIGGER,function()
         TT_MakeUnit_Target(BOSSES[IsInArray_ByKey(BlzGetTriggerFrame(),BOSS_WIDGETS,'iconButton')] or TARGET)

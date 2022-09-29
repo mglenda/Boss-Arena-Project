@@ -1,3 +1,7 @@
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
 function BOSSBAR_BarCreate()
     local mainFrame = BlzCreateSimpleFrame('BossBar_Border', BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0)
     local bar = BlzCreateSimpleFrame('BossBar_Bar', mainFrame, 0)
