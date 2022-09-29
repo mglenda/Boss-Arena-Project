@@ -5,6 +5,9 @@
 MSX_PERIOD = 0.00625
 MSX_MARGIN = 0.01
 
+MS_MAX_MOVESPEED = 1000
+MS_MIN_MOVESPEED = 0
+
 function ApproxEqual (A,B)
     return (A >= (B - MSX_MARGIN)) and (A <= (B + MSX_MARGIN))
 end
