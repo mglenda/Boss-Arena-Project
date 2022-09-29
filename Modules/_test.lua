@@ -35,7 +35,6 @@ function test_keyboard()
             end
         end
     end)
-
     trig = CreateTrigger()
     TriggerRegisterPlayerChatEvent(trig, Player(0), "mage", true)
     TriggerRegisterPlayerChatEvent(trig, Player(0), "priest", true)
