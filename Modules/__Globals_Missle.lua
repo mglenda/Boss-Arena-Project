@@ -27,7 +27,7 @@ MISSLE_DATA = {
         ,model = 'Abilities\\Weapons\\PhoenixMissile\\Phoenix_Missile.mdl'
     }
     ,pt_Penance = {
-        height = 50.0
+        height = 110.0
         ,scale = 1.5
         ,model = 'war3mapImported\\Penance.mdx'
     }

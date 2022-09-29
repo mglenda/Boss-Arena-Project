@@ -318,15 +318,6 @@ function AB_Priest_PenanceCasting()
                     ,dmg = ABILITIES_DATA[ABCODE_PENANCE].getDamage(v.caster)
                     ,heal = ABILITIES_DATA[ABCODE_PENANCE].getHeal(v.caster)
                     ,height = height
-                    ,weaver_cur = 0.0
-                    ,weaver_goal = 10.0
-                    ,weaver_inc = 2.0
-                    ,weaver_goal_z = 25.0
-                    ,weaver_cur_z = 25.0
-                    ,weaver_inc_z = 5.0
-                    ,x = BlzGetLocalSpecialEffectX(missle)
-                    ,y = BlzGetLocalSpecialEffectY(missle)
-                    ,z = BlzGetLocalSpecialEffectZ(missle) - height
                 })
                 
                 if not(IsTriggerEnabled(MISSLE_TRIGGERS[ABCODE_PENANCE])) then
@@ -350,10 +341,10 @@ function AB_Priest_PenanceMissleFly()
             else 
                 local caster,missleSpeed = MISSLE_GROUPS[ABCODE_PENANCE][i].caster,MISSLE_GROUPS[ABCODE_PENANCE][i].missleSpeed
                 local tx,ty = GetUnitXY(target)
-                local x,y = MISSLE_GROUPS[ABCODE_PENANCE][i].x,MISSLE_GROUPS[ABCODE_PENANCE][i].y
+                local x,y = MISSLE_GetXY(missle)
                 local dist = MATH_GetDistance(x,y,tx,ty)
                 local int = dist / missleSpeed > 1 and dist / missleSpeed or 1.0
-                local m_z,t_z = MISSLE_GROUPS[ABCODE_PENANCE][i].z - MISSLE_GROUPS[ABCODE_PENANCE][i].height,GetUnitZ(target)
+                local m_z,t_z = BlzGetLocalSpecialEffectZ(missle) - MISSLE_GROUPS[ABCODE_PENANCE][i].height,GetUnitZ(target)
                 if dist <= UNIT_GetImpactDist(target) then
                     MISSLE_Impact(missle)
                     if IsUnitEnemy(target, GetOwningPlayer(caster)) then
@@ -369,21 +360,7 @@ function AB_Priest_PenanceMissleFly()
                 else
                     local rad = MATH_GetRadXY(x,y,tx,ty)
                     x,y = MATH_MoveXY(x,y,missleSpeed,rad)
-                    MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur = MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur + MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc
-                    MISSLE_GROUPS[ABCODE_PENANCE][i].x = x
-                    MISSLE_GROUPS[ABCODE_PENANCE][i].y = y
-                    x,y = MATH_MoveXY(x,y,MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur,rad - (90.0 * bj_DEGTORAD))
-                    if MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur >= MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_goal or MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur <= (MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_goal * (-1)) then
-                        MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc = MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc * (-1)
-                    end
-                    m_z = m_z + ((t_z - m_z) / int) + MISSLE_GROUPS[ABCODE_PENANCE][i].height
-                    MISSLE_GROUPS[ABCODE_PENANCE][i].z = m_z
-                    m_z = m_z + MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur_z
-                    if MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur_z >= MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_goal_z or MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur_z <= (MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_goal_z * (-1)) then
-                        MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc_z = MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc_z * (-1)
-                    end
-                    MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur_z = MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_cur_z + MISSLE_GROUPS[ABCODE_PENANCE][i].weaver_inc_z
-                    BlzSetSpecialEffectPosition(missle, x, y, m_z)
+                    BlzSetSpecialEffectPosition(missle, x, y, m_z + ((t_z - m_z) / int) + MISSLE_GROUPS[ABCODE_PENANCE][i].height)
                     BlzSetSpecialEffectYaw(missle, rad)
                     rad = nil
                 end
