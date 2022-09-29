@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Warcraft III\_retail_\x86_64\Warcraft III.exe" -loadfile "C:\Workplace\Warcraft 3\Main Project\Map.w3m" -launch
