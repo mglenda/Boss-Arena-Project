@@ -9,3 +9,5 @@ oldGetUnitMS = GetUnitMoveSpeed
 oldSetUnitMS = SetUnitMoveSpeed
 
 oldBlzFrameSetVisible = BlzFrameSetVisible
+
+oldDestroyTrigger = DestroyTrigger
