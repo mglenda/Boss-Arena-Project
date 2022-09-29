@@ -1,3 +1,5 @@
+UNITS_DATA = nil
+
 function UNIT_InitiateGlobalData()
     UNITS_DATA = {
         [HERO_FIREMAGE] = {

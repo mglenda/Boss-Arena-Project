@@ -2,6 +2,8 @@
 -------------DAMAGE SYSTEM SETUP--------------------
 ----------------------------------------------------
 
+DAMAGE_ENGINE_TYPE_AUTOATTACK = 0
+
 DEFAULT_TEXTTAG_RED = 255.00
 DEFAULT_TEXTTAG_GREEN = 76.00
 DEFAULT_TEXTTAG_BLUE = 76.00
@@ -28,6 +30,8 @@ CHEAT_DETECTED = false
 dmgAbsorb = {}
 dmgRecord = {}
 dmgData = {}
+dmgFactor_Data = {}
+dmgFactor_Data_Victim = {}
 
 dmgTxt = {
     red = DEFAULT_TEXTTAG_RED

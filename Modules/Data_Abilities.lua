@@ -2,6 +2,8 @@
 -----------------ABILITIES_DATA---------------------
 ----------------------------------------------------
 
+ABILITIES_DATA = nil
+
 AB_TARGET_UNIT = 0
 AB_TARGET_POINT = 1
 AB_TARGET_INSTANT = 2

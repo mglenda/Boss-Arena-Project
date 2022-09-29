@@ -2,6 +2,8 @@
 ---------------UNIT SYSTEM SETUP--------------------
 ----------------------------------------------------
 
+TRAINING_DUMMIES = {}
+
 function UNIT_GetEnergyTheme(u)
     return UNIT_GetData(u,'energy_theme')
 end

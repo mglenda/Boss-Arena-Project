@@ -2,6 +2,10 @@
 -------------DAMAGE SYSTEM SETUP--------------------
 ----------------------------------------------------
 
+function Get_DmgTypeAutoAttack()
+    return DAMAGE_ENGINE_TYPE_AUTOATTACK
+end
+
 function DS_dmgTxt_LoadColor(dmg_id)
     cl_id = (ABILITIES_DATA[dmg_id] and ABILITIES_DATA[dmg_id].TAG_color) and ABILITIES_DATA[dmg_id].TAG_color or TAG_clDefault
     dmgTxt.red = TAG_Colors[cl_id].r

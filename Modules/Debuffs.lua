@@ -2,6 +2,11 @@
 ------------------BUFF SYSTEM SETUP-----------------
 ----------------------------------------------------
 
+function AddSpecialEffectBuff(where,unit,effect)
+    local eff = oldAddEffect(where,unit,effect)
+    return eff
+end
+
 function BUFF_GetStacksCount(unit,debuff_name)
     local c = 0
     for i, v in pairs(DEBUFFS) do

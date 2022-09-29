@@ -2,6 +2,9 @@
 -------------TALENTS SYSTEM SETUP-------------------
 ----------------------------------------------------
 
+TALENTS_ABILITY_KEY = OSKEY_N
+TALENTS_ABILITY_TOOLTIP = 'N'
+
 TALENTS_TABLE = nil
 TALENTS_FRAME_CONTAINER = {}
 TALENTS_FRAME_MAIN = nil

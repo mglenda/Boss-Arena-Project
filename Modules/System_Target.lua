@@ -5,6 +5,7 @@
 PLAYER_MOUSELOC_X,PLAYER_MOUSELOC_Y = nil,nil
 PLAYER_MOUSELOC_TRIGGER = CreateTrigger()
 PLAYER_QUICKCAST_ENABLED = true
+TARGET_ABILITY = FourCC('TARG')
 
 function TT_LoadTargetingSystem()
     TT_Register_SelectionEvent()

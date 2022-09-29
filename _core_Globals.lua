@@ -1,0 +1,57 @@
+-- Forbiden Keys {S H A P M}
+
+KEY_PRESSED_NONE = 0
+KEY_PRESSED_SHIFT = 1
+KEY_PRESSED_CTRL = 2
+KEY_PRESSED_SHIFT_CTRL = 3
+KEY_PRESSED_ALT = 4
+KEY_PRESSED_SHIFT_ALT = 5
+KEY_PRESSED_CTRL_ALT = 6
+KEY_PRESSED_SHIFT_CTRL_ALT = 7
+
+JASS_DATATYPE_TRIGGER = 'trigger'
+JASS_DATATYPE_LOCATION = 'location'
+JASS_DATATYPE_PLAYER = 'player'
+JASS_DATATYPE_UNIT = 'unit'
+JASS_DATATYPE_EFFECT = 'effect'
+
+PLAYER = Player(0)
+PLAYER_BOSS = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+PLAYER_GUARDIANS = Player(1)
+PLAYER_PASSIVE = Player(PLAYER_NEUTRAL_PASSIVE)
+PLAYERS_GROUP = {
+    PLAYER
+    ,PLAYER_BOSS
+    ,PLAYER_GUARDIANS
+    ,PLAYER_PASSIVE
+}
+
+DEFAULT_NONHERO_CRITRATE = 10
+PRIMARY_ATTRIBUTE_STR = 1
+PRIMARY_ATTRIBUTE_INT = 2
+PRIMARY_ATTRIBUTE_AGI = 3
+
+ATTDMG_PER_PRIMARY_ATTRIBUTE = 0.4
+
+ATTRIBUTE_UNDEFINED_ICON = 'war3mapImported\\STAT_AttackPower.dds'
+STATS_ATTDMG_ICON = 'war3mapImported\\STAT_AttackDmg.dds'
+STATS_RESISTANCE_ICON = 'war3mapImported\\STAT_Resistance.dds'
+STATS_CRITICAL_ICON = 'war3mapImported\\STAT_CriticalChance.dds'
+
+ATTRIBUTES = {
+    [PRIMARY_ATTRIBUTE_STR] = {
+        stat = bj_HEROSTAT_STR
+        ,icon = 'war3mapImported\\STAT_AttackPower.dds'
+    },
+    [PRIMARY_ATTRIBUTE_INT] = {
+        stat = bj_HEROSTAT_INT
+        ,icon = 'war3mapImported\\STAT_SpellPower.dds'
+    },
+    [PRIMARY_ATTRIBUTE_AGI] = {
+        stat = bj_HEROSTAT_AGI
+        ,icon = 'war3mapImported\\STAT_AttackPower.dds'
+    }
+}
+
+HERO = nil
+TARGET = nil
