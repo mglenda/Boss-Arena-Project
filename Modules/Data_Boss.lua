@@ -13,8 +13,8 @@ function BOSS_LoadData()
             ,name = 'Plague Cult'
             ,diff = {
                 avail = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
                 ,defeated = {
@@ -96,13 +96,13 @@ function BOSS_LoadData()
             ,name = 'Shaman'
             ,diff = {
                 avail = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
                 ,defeated = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
             }
@@ -189,13 +189,13 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetDruid.dds'
             ,diff = {
                 avail = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
                 ,defeated = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
             }
@@ -263,8 +263,8 @@ function BOSS_LoadData()
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
                 ,defeated = {
-                    [BOSS_DIFFICULTY_NORMAL] = true
-                    ,[BOSS_DIFFICULTY_HEROIC] = true
+                    [BOSS_DIFFICULTY_NORMAL] = false
+                    ,[BOSS_DIFFICULTY_HEROIC] = false
                     ,[BOSS_DIFFICULTY_MYTHIC] = false
                 }
             }
@@ -309,4 +309,7 @@ function BOSS_LoadData()
             ,defeatFunc = Beastmaster_Defeat
         }
     }
+
+    init_profiler()
+    BOSS_LoadData = nil
 end

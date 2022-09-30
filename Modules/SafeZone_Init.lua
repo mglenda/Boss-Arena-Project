@@ -22,8 +22,6 @@ function MAIN_Initialize()
     MAIN_RegisterZoneLeaving = nil
     BOSS_CreateJournalButton()
     BOSS_CreateJournalButton= nil
-    BOSS_LoadData()
-    BOSS_LoadData = nil
     BOSS_LoadJournalData()
     BOSS_LoadJournalData = nil
 

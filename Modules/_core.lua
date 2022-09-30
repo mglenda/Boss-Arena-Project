@@ -12,6 +12,7 @@ end
 
 function MapSetup()
     LoadTOCFile("war3mapImported\\CustomUI.toc")
+    BOSS_LoadData()
     HERODATA_Load()
     UNIT_InitiateGlobalData()
     UNIT_RegisterPreCreatedUnits()

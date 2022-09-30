@@ -22,5 +22,6 @@ function MapSetup_AfterHero()
 
     TOOLTIP_RegisterTooltiping()
 
+    PanCameraToTimedForPlayer(PLAYER, START_X, START_Y, 0.0)
     MapSetup_AfterHero = nil
 end

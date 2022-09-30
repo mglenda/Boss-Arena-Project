@@ -215,6 +215,7 @@ function BOSS_Defeat(id)
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
     BOSSBAR_Hide()
+    HERO_SaveProfile()
 end
 
 function BOSS_Victory(id)
@@ -227,6 +228,7 @@ function BOSS_Victory(id)
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
     BOSSBAR_Hide()
+    HERO_SaveProfile()
 end
 
 function BOSS_FleeBattle(id)
@@ -238,6 +240,7 @@ function BOSS_FleeBattle(id)
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
     BOSSBAR_Hide()
+    HERO_SaveProfile()
 end
 
 function BOSS_ProgressDifficulties(id,diff)

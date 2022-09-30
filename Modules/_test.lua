@@ -3,7 +3,7 @@ function test_keyboard()
     BlzTriggerRegisterPlayerKeyEvent(trig,PLAYER,OSKEY_C,KEY_PRESSED_SHIFT,true)
     TriggerAddAction(trig, function()
         --CD_ResetAllAbilitiesCooldown(HERO)
-        --FileIO:Write("fiotest.txt", tostring(HERO_DATA))
+        --FileIO:Write("warlock.txt", save_GenerateString())
     end)
 
     trig = CreateTrigger()

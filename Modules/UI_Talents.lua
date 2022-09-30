@@ -203,6 +203,7 @@ function TALENTS_ChooseTalent(Tree_ID,Talent_ID)
             end    
         end
         TALENTS_ApplyTalent(Tree_ID,Talent_ID)
+        HERO_SaveProfile()
     end
 end
 
