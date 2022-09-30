@@ -18,6 +18,8 @@ function HERODATA_Load()
         ,UI_registerFunc = UI_FireMage
         ,UI_memoryCleanFunc = UI_FireMageFlush
         ,ReadyUpFunc = ReadyUp_FireMage
+        ,Journal_Image = 'war3mapImported\\Mage.dds'
+        ,Journal_Title = 'Mage'
         ,PopUps = {
             [1] = {
                 texture = 'war3mapImported\\FirePowerAura.dds'
@@ -53,38 +55,6 @@ function HERODATA_Load()
         }
     }
 
-    HERO_DATA[HERO_PRIEST] = {
-        CreateFunc = CreatePriest
-        ,AB_memoryCleanFunc = AB_Priest_MemoryClear
-        ,AB_registerFunc = AB_RegisterHero_Priest
-        ,TALENTS_registerFunc = TALENTS_Load_Priest
-        ,TALENTS_memoryCleanFunc = TALENTS_Flush_Priest
-        ,UI_registerFunc = UI_Priest
-        ,UI_memoryCleanFunc = UI_PriestFlush
-        ,ReadyUpFunc = ReadyUp_Priest
-        ,anims = {
-            A_STAND_1 = {id = 0,time = 0}
-            ,A_STAND_2 = {id = 1,time = 4.5}
-            ,A_WALK = {id = 2,time = 0}
-            ,A_TALK = {id = 3,time = 2.0}
-            ,A_SPELL_CHANNEL = {id = 4,time = 0}
-            ,A_SPELL_CHANNEL_FINISH = {id = 5,time = 0.9}
-            ,A_SPELL_CHANNEL_SUMMON = {id = 6,time = 0}
-            ,A_SPELL_CHANNEL_HAND = {id = 7,time = 0}
-            ,A_ATTACK = {id = 8,time = 1.0}
-            ,A_SPELL_CHANNEL_POINTING = {id = 9, time = 0}
-            ,A_DEATH = {id = 10,time = 4.17}
-        }
-        ,PopUps = {
-            [1] = {
-                texture = 'war3mapImported\\HolyPowerAura.dds'
-                ,hideFunc = function() return BUFF_GetStacksCount(HERO,'BLESSED') <= 0 end
-                ,showFunc = function() return BUFF_GetStacksCount(HERO,'BLESSED') > 0 and IsAbilityAvailable(HERO,ABCODE_PENANCE) end
-                ,key = 'blessed'
-            }
-        }
-    }
-
     HERO_DATA[HERO_WARLOCK] = {
         CreateFunc = CreateWarlock
         ,AB_memoryCleanFunc = AB_Warlock_MemoryClear
@@ -94,6 +64,8 @@ function HERODATA_Load()
         ,UI_registerFunc = UI_Warlock
         ,UI_memoryCleanFunc = UI_WarlockFlush
         ,ReadyUpFunc = ReadyUp_Warlock
+        ,Journal_Image = 'war3mapImported\\Warlock.dds'
+        ,Journal_Title = 'Warlock'
         ,anims = {
             A_STAND_1 = {id = 0,time = 0}
             ,A_WALK = {id = 1,time = 0}
@@ -131,8 +103,43 @@ function HERODATA_Load()
         }
     }
 
+    HERO_DATA[HERO_PRIEST] = {
+        CreateFunc = CreatePriest
+        ,AB_memoryCleanFunc = AB_Priest_MemoryClear
+        ,AB_registerFunc = AB_RegisterHero_Priest
+        ,TALENTS_registerFunc = TALENTS_Load_Priest
+        ,TALENTS_memoryCleanFunc = TALENTS_Flush_Priest
+        ,UI_registerFunc = UI_Priest
+        ,UI_memoryCleanFunc = UI_PriestFlush
+        ,ReadyUpFunc = ReadyUp_Priest
+        ,Journal_Image = 'war3mapImported\\Priest.dds'
+        ,Journal_Title = 'Priest'
+        ,anims = {
+            A_STAND_1 = {id = 0,time = 0}
+            ,A_STAND_2 = {id = 1,time = 4.5}
+            ,A_WALK = {id = 2,time = 0}
+            ,A_TALK = {id = 3,time = 2.0}
+            ,A_SPELL_CHANNEL = {id = 4,time = 0}
+            ,A_SPELL_CHANNEL_FINISH = {id = 5,time = 0.9}
+            ,A_SPELL_CHANNEL_SUMMON = {id = 6,time = 0}
+            ,A_SPELL_CHANNEL_HAND = {id = 7,time = 0}
+            ,A_ATTACK = {id = 8,time = 1.0}
+            ,A_SPELL_CHANNEL_POINTING = {id = 9, time = 0}
+            ,A_DEATH = {id = 10,time = 4.17}
+        }
+        ,PopUps = {
+            [1] = {
+                texture = 'war3mapImported\\HolyPowerAura.dds'
+                ,hideFunc = function() return BUFF_GetStacksCount(HERO,'BLESSED') <= 0 end
+                ,showFunc = function() return BUFF_GetStacksCount(HERO,'BLESSED') > 0 and IsAbilityAvailable(HERO,ABCODE_PENANCE) end
+                ,key = 'blessed'
+            }
+        }
+    }
+
 
     HERODATA_Load = nil
 
     HERO_PolishedAbilities_Register()
+    UI_HeroJournal_Initialize()
 end

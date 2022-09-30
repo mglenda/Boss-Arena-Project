@@ -17,6 +17,7 @@ function MapSetup()
     UNIT_RegisterPreCreatedUnits()
     RegisterAbilitiesData()
     core_LoadImportedEffects()
+    AntiCheatsLoad()
     test_keyboard()
 end
 

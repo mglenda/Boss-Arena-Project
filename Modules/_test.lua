@@ -8,13 +8,13 @@ function test_keyboard()
     trig = CreateTrigger()
     BlzTriggerRegisterPlayerKeyEvent(trig,PLAYER,OSKEY_X,KEY_PRESSED_SHIFT,true)
     TriggerAddAction(trig, function()
-        HERO_SetLevel(HERO_GetLevel() + 1)
+        --HERO_SetLevel(HERO_GetLevel() + 1)
     end)
 
     trig = CreateTrigger()
     BlzTriggerRegisterPlayerKeyEvent(trig,PLAYER,OSKEY_V,KEY_PRESSED_SHIFT,true)
     TriggerAddAction(trig, function()
-        HERO_SetLevel(HERO_GetLevel() - 1)
+        --HERO_SetLevel(HERO_GetLevel() - 1)
     end)
 
     trig = CreateTrigger()
@@ -33,20 +33,6 @@ function test_keyboard()
                     BUFF_ClearDebuff(i)
                 end
             end
-        end
-    end)
-    trig = CreateTrigger()
-    TriggerRegisterPlayerChatEvent(trig, Player(0), "mage", true)
-    TriggerRegisterPlayerChatEvent(trig, Player(0), "priest", true)
-    TriggerRegisterPlayerChatEvent(trig, Player(0), "warlock", true)
-    TriggerAddAction(trig, function()
-        DestroyTrigger(GetTriggeringTrigger())
-        if GetEventPlayerChatString() == "mage" then
-            CreateFireMage()
-        elseif GetEventPlayerChatString() == "priest" then
-            CreatePriest()
-        elseif GetEventPlayerChatString() == "warlock" then
-            CreateWarlock()
         end
     end)
 

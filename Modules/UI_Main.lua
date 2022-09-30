@@ -2,20 +2,6 @@
 --------------------UI SETUP------------------------
 ----------------------------------------------------
 
-function UI_FixFocusBug()
-    BlzTriggerRegisterFrameEvent(UI_FOCUSBUG_TRIGGER, BlzGetFrameByName("MenuBar_KnowledgeButton_Frame_Button", 0), FRAMEEVENT_CONTROL_CLICK)
-    BlzTriggerRegisterFrameEvent(UI_FOCUSBUG_TRIGGER, BlzGetFrameByName("MenuBar_StatsButton_Frame_Button", 0), FRAMEEVENT_CONTROL_CLICK)
-    BlzTriggerRegisterFrameEvent(UI_FOCUSBUG_TRIGGER, BlzGetFrameByName("MenuBar_InfoButton_Frame_Button", 0), FRAMEEVENT_CONTROL_CLICK)
-
-    TriggerAddAction(UI_FOCUSBUG_TRIGGER, function()
-        if BlzFrameGetEnable(BlzGetTriggerFrame()) then
-            BlzFrameSetEnable(BlzGetTriggerFrame(), false)
-            BlzFrameSetEnable(BlzGetTriggerFrame(), true)
-        end
-    end)
-    UI_FixFocusBug = nil
-end
-
 function UI_HideOriginalUI()
     UI_HideOriginalFrames()
     UI_HideOriginalFrames = nil
