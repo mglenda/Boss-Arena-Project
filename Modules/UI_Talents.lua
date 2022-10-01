@@ -213,6 +213,7 @@ function TALENTS_ResetAll()
             TALENTS_DiscardTalent(x,i)
         end
     end
+    HERO_SaveProfile()
 end
 
 function TALENTS_ApplyAll()
@@ -224,7 +225,7 @@ function TALENTS_ApplyAll()
 end
 
 function TALENTS_ApplyTalent(Tree_ID,Talent_ID)
-    if not(TALENTS_TABLE[Tree_ID][Talent_ID].Enabled) then
+    if not(TALENTS_TABLE[Tree_ID][Talent_ID].Enabled) and TALENTS_IsAvailable(Tree_ID,Talent_ID) then
         TALENTS_TABLE[Tree_ID][Talent_ID].ApplyFunc()
         TALENTS_TABLE[Tree_ID][Talent_ID].Enabled = true
     end

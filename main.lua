@@ -22,6 +22,9 @@ function MapSetup_AfterHero()
 
     TOOLTIP_RegisterTooltiping()
 
+    TALENTS_ApplyProfilerData()
+    flush_profiler()
+
     PanCameraToTimedForPlayer(PLAYER, START_X, START_Y, 0.0)
     MapSetup_AfterHero = nil
-end
+end     

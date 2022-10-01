@@ -1,5 +1,4 @@
-_data = "4:1=false|2=false|3=false|;1:1=true|2=true|3=false|;2:1=true|2=true|3=false|;3:1=true|2=true|3=false|;]"
-
+_data = "2:4=false|1=true|2=false|3=false|;1:4=false|1=false|2=false|3=false|;"
 toboolean = {["true"]=true,["false"]=false,[1]=true,[0]=false}
 
 function string_split(pString, pPattern)
@@ -22,31 +21,13 @@ function string_split(pString, pPattern)
 end
 
 function load_BossData(str)
-    local m_tbl = {}
-    _data = string_split(str,';')
-    for _,data in pairs(_data) do
-        local d_tbl = {}
-        local i,_= data:find(':',1)
-        local b_id = math.tointeger(data:sub(1,i-1))
-        data = data:sub(i+1)
-        data = string_split(data,'|')
-        for _,v in pairs(data) do
-            i,_ = v:find('=',1)
-            local d_id = math.tointeger(v:sub(1,i-1))
-            local d_val = toboolean[v:sub(i+1)]
-            d_tbl[d_id] = d_val
-        end
-        m_tbl[b_id] = d_tbl
-        d_tbl = nil
-    end
-    return m_tbl
+    --m_tbl,tbl = nil,nil
 end
 
-function load_Profile(filename)
-    local data = FileIO:Read("warlock.txt")
+data = nil
+if data[1] and data[2][3] then
+    print(data[1][2][3])
 end
 
-data = string_split(_data,']')
-data_x = string_split(data[1],';')
-load_BossData(data[1])
+load_BossData(_data)
 print('end')

@@ -60,7 +60,8 @@ end
 function UI_HeroJournal_Inject(h_id)
     BlzFrameSetTexture(HERO_JOURNAL_IMAGE, HERO_DATA[h_id].Journal_Image, 0, true)
     BlzFrameSetText(HERO_JOURNAL_NAME, HERO_DATA[h_id].Journal_Title)
-    load_Profile(HERO_DATA[h_id].profile_filename)
+    HERO_TYPE = h_id
+    HERO_LoadProfile()
 end
 
 function UI_HeroJournal_LoadData()

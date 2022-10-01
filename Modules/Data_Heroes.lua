@@ -20,7 +20,11 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_FireMage
         ,Journal_Image = 'war3mapImported\\Mage.dds'
         ,Journal_Title = 'Mage'
-        ,profile_filename = 'fd5c86b0-18b3-47c8-8365-4ea25e89fcbb.txt'
+        ,data_files = {
+            bossDifficulties = 'd3be53e7-d38e-409c-954e-90581979d6ab.txt'
+            ,bossRecords = 'deaebaf5-5cdb-4079-b223-fd193fd795b5.txt'
+            ,talents = '6f72bcc7-3a34-4200-8827-36fcf4913547.txt'
+        }
         ,PopUps = {
             [1] = {
                 texture = 'war3mapImported\\FirePowerAura.dds'
@@ -67,7 +71,11 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_Warlock
         ,Journal_Image = 'war3mapImported\\Warlock.dds'
         ,Journal_Title = 'Warlock'
-        ,profile_filename = 'c7e75d09-b47b-4f98-af50-ac5eb104fd5d.txt'
+        ,data_files = {
+            bossDifficulties = '7638c47e-3aa9-4849-ad91-ce9534c1b377.txt'
+            ,bossRecords = 'f816ef8d-a759-487b-9c7d-445e4f4146dd.txt'
+            ,talents = '16e00aa3-b421-4e26-b10f-f2a1ff8495bb.txt'
+        }
         ,anims = {
             A_STAND_1 = {id = 0,time = 0}
             ,A_WALK = {id = 1,time = 0}
@@ -116,7 +124,11 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_Priest
         ,Journal_Image = 'war3mapImported\\Priest.dds'
         ,Journal_Title = 'Priest'
-        ,profile_filename = 'f629ea98-48e7-403d-8741-a0c13e952fcc.txt'
+        ,data_files = {
+            bossDifficulties = 'a840cede-792f-47ce-a005-7154482096a1.txt'
+            ,bossRecords = '9b9722e2-863b-4816-95b4-747160a75e03.txt'
+            ,talents = 'e8902958-992f-4ed5-bb6e-a24cffd4e1b9.txt'
+        }
         ,anims = {
             A_STAND_1 = {id = 0,time = 0}
             ,A_STAND_2 = {id = 1,time = 4.5}
