@@ -85,7 +85,17 @@ function get_HeroTalents_Data_Default()
         end
     end 
 
-    return tbl
+    local _data = ""
+    for i,_ in pairs(tbl) do
+        _data = _data .. i .. ":"
+        for j,_ in pairs(tbl[i]) do
+            _data = _data .. j .. "=" .. tostring(tbl[i][j]) .. "|"
+        end
+        _data = _data .. ';'
+    end
+
+    tbl = nil
+    return _data
 end
 
 function get_HeroTalents_Data()
@@ -170,7 +180,6 @@ function inject_Data(tbl)
             BOSS_DATA[b_id].diff.defeated[diff_id] = bool
         end
     end
-
     --RECORDS
     for b_id,d_t in pairs(parse_bossRecords(tbl.bossRecords)) do
         for d_id,r_t in pairs(d_t) do
@@ -179,7 +188,6 @@ function inject_Data(tbl)
             end
         end
     end
-
     --TALENTS
     PROFILER_DEF_DATA.talentsParsed = parse_talents(tbl.talents)
 end
@@ -205,26 +213,27 @@ function TALENTS_ApplyProfilerData()
     end
 end
 
-function load_Profile(HERO_TYPE)
+function load_Profile(h_type)
     local data = {
-        bossDifficulties = FileIO:Read(HERO_DATA[HERO_TYPE].data_files.bossDifficulties)
-        ,bossRecords = FileIO:Read(HERO_DATA[HERO_TYPE].data_files.bossRecords)
-        ,talents = FileIO:Read(HERO_DATA[HERO_TYPE].data_files.talents)
+        bossDifficulties = FileIO:Read(HERO_DATA[h_type].data_files.bossDifficulties)
+        ,bossRecords = FileIO:Read(HERO_DATA[h_type].data_files.bossRecords)
+        ,talents = FileIO:Read(HERO_DATA[h_type].data_files.talents)
     }
-    for i,v in pairs(data) do
-        v = v == "" and PROFILER_DEF_DATA[i] or v
+
+    for i,_ in pairs(data) do
+        data[i] = data[i] == "" and PROFILER_DEF_DATA[i] or data[i]
     end
     inject_Data(data)
 end
 
-function save_Profile(HERO_TYPE)
+function save_Profile(h_type)
     local data = {
         bossDifficulties = get_BossDifficulties_Data()
         ,bossRecords = get_BossRecords_Data()
         ,talents = get_HeroTalents_Data()
     }
     for i,v in pairs(data) do
-        FileIO:Write(HERO_DATA[HERO_TYPE].data_files[i], v)
+        FileIO:Write(HERO_DATA[h_type].data_files[i], v)
     end
 end
 

@@ -4,13 +4,14 @@
 
 function BOSS_LoadData()
     BOSS_DATA = {
-        [BOSS_PLAGUE_CULT] = {
+       --[[[BOSS_PLAGUE_CULT] = {
             boss_id = {
                 FourCC('N007')
                 ,FourCC('N008')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Plague Cult'
+            ,Journal_Image = 'war3mapImported\\BTN_Zamidan.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -87,13 +88,14 @@ function BOSS_LoadData()
                 ,A_VENAT_SPELL_CHANNEL_START = {id = 28, time = 1.0}
                 ,A_VENAT_SPELL_CHANNEL = {id = 26, time = 0}
             }
-        }
-        ,[BOSS_SHAMAN_ID] = {
+        },]]--
+        [BOSS_SHAMAN_ID] = {
             boss_id = {
                 FourCC('N004')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Shaman'
+            ,Journal_Image = 'war3mapImported\\BTN_ThrallJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -187,6 +189,7 @@ function BOSS_LoadData()
                 FourCC('U002')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetDruid.dds'
+            ,Journal_Image = 'war3mapImported\\BTN_Druid.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -256,6 +259,7 @@ function BOSS_LoadData()
                 FourCC('U001')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetBeastmaster.dds'
+            ,Journal_Image = 'war3mapImported\\BTN_Beastmaster.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = true
