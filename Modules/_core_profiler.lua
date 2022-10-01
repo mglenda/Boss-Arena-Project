@@ -185,6 +185,17 @@ function inject_Data(tbl)
 end
 
 function TALENTS_ApplyProfilerData()
+    for m_i,_ in pairs(PROFILER_DEF_DATA.talentsParsed) do
+        for c_i,t in pairs(PROFILER_DEF_DATA.talentsParsed) do
+            for t_i,bool in pairs(t) do
+                if m_i ~= c_i and PROFILER_DEF_DATA.talentsParsed[m_i][t_i] and bool then
+                    print('Looks like there are multiple talents of same tier activated in your profile file. Talents will not be loaded. Cheating is not allowed.')
+                    return
+                end
+            end
+        end
+    end
+
     for tree_i,tree in pairs(PROFILER_DEF_DATA.talentsParsed) do
         for t_i,bool in pairs(tree) do
             if TALENTS_TABLE[tree_i] and TALENTS_TABLE[tree_i][t_i] and bool then

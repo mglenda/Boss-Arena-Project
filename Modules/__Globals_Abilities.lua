@@ -202,7 +202,7 @@ function RegisterAbilitiesData()
             ,TARGET_TYPE = AB_TARGET_UNIT
             ,barTheme = DBM_BAR_clRED
             ,getDamage = function(caster)
-                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 5.0
+                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 3.8
             end
             ,duration = function() 
                 return DEBUFFS_DATA['FELMADNESS'].duration
@@ -262,7 +262,7 @@ function RegisterAbilitiesData()
             ,TARGET_TYPE = AB_TARGET_UNIT
             ,barTheme = DBM_BAR_clGREEN
             ,getDamage = function(caster)
-                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 10.00
+                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 7.50
             end
             ,duration = function() 
                 return DEBUFFS_DATA['CURSEOFARGUS'].duration

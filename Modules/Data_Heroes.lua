@@ -113,7 +113,7 @@ function HERODATA_Load()
         }
     }
 
-    HERO_DATA[HERO_PRIEST] = {
+    --[[HERO_DATA[HERO_PRIEST] = {
         CreateFunc = CreatePriest
         ,AB_memoryCleanFunc = AB_Priest_MemoryClear
         ,AB_registerFunc = AB_RegisterHero_Priest
@@ -150,7 +150,7 @@ function HERODATA_Load()
                 ,key = 'blessed'
             }
         }
-    }
+    }]]--
 
 
     HERODATA_Load = nil

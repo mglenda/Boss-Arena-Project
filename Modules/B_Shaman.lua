@@ -616,7 +616,7 @@ function Shaman_ElementalBlast_MissleFly()
                     MISSLE_Impact(v.missle)
                     table.remove(BOSS_MISSLES,i)
                     if v.dmg then
-                        DS_DamageUnit(v.caster, t, 3500.0, ATTACK_TYPE_MAGIC, DAMAGE_TYPE_UNIVERSAL, ABCODE_ELEMENTALBLAST)
+                        DS_DamageUnit(v.caster, t, 8500.0, ATTACK_TYPE_MAGIC, DAMAGE_TYPE_UNIVERSAL, ABCODE_ELEMENTALBLAST)
                         BUFF_AddDebuff_Stack({
                             name = 'ELEMENTAL_BLASTED'
                             ,target = t
