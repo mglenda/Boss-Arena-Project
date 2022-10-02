@@ -202,7 +202,7 @@ function RegisterAbilitiesData()
             ,TARGET_TYPE = AB_TARGET_UNIT
             ,barTheme = DBM_BAR_clRED
             ,getDamage = function(caster)
-                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 3.8
+                return GetHeroStatBJ(bj_HEROSTAT_INT, caster, true) * 5.2
             end
             ,duration = function() 
                 return DEBUFFS_DATA['FELMADNESS'].duration

@@ -688,7 +688,7 @@ function AB_Warlock_ChaosBoltMissleFly()
                     AB_Warlock_ChaosBolt_Dot(target,caster,dmgRecord[GetHandleIdBJ(target)][ABCODE_CHAOSBOLT].dmgReceived_BefAbsrb * 0.1)
                     local ic = AB_GetTalentModifier(ABCODE_CHAOSBOLT,'InfusedChaos')
                     if ic then
-                        BUFF_AddDebuffDurationAllStacks(target,'FELMADNESS',ic)
+                        BUFF_AddDebuffDurationAllStacks(target,'FELMADNESS',ic,AB_GetTalentModifier(ABCODE_CHAOSBOLT,'InfusedChaosCap'))
                     end
                     table.remove(MISSLE_GROUPS[ABCODE_CHAOSBOLT],i)
                     eff,ic = nil,nil

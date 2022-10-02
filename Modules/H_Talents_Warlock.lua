@@ -58,12 +58,14 @@ function TALENTS_Load_Warlock()
                 LevelRequired = 5
                 ,ApplyFunc = function() 
                     AB_SetTalentsModifier(ABCODE_CHAOSBOLT,'InfusedChaos',2)
+                    AB_SetTalentsModifier(ABCODE_CHAOSBOLT,'InfusedChaosCap',25)
                 end
                 ,DiscardFunc = function()
                     AB_SetTalentsModifier(ABCODE_CHAOSBOLT,'InfusedChaos',nil)
+                    AB_SetTalentsModifier(ABCODE_CHAOSBOLT,'InfusedChaosCap',nil)
                 end
                 ,Name = 'Chaos Infusion'
-                ,Tooltip = 'Chaos bolt extends duration of all Fel Madness stacks\non the target by 2 seconds.'
+                ,Tooltip = 'Chaos bolt extends duration of all Fel Madness stacks\non the target by 2 seconds up to 25 seconds duration cap.'
                 ,Enabled = false
                 ,ICON = 'war3mapImported\\BTN_ChaosInfusion.dds'
                 ,ICON_PUSHED = 'war3mapImported\\BTN_ChaosInfusionPushed.dds'

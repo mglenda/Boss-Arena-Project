@@ -261,10 +261,10 @@ function BUFF_RefreshDebuffDurationAllStacks(unit,debuff_name)
     end
 end
 
-function BUFF_AddDebuffDurationAllStacks(unit,debuff_name,value)
+function BUFF_AddDebuffDurationAllStacks(unit,debuff_name,value,cap)
     for i, v in pairs(DEBUFFS) do
         if v.target == unit and v.name == debuff_name then
-            BUFF_AddDebuffDuration(i,value)
+            BUFF_AddDebuffDuration(i,value,cap)
         end
     end
 end
@@ -305,16 +305,18 @@ function BUFF_RefreshDuration(ID)
     BUFF_Attribute_SetValue(ID,'curTime',0)
 end
 
-function BUFF_AddDebuffDuration(ID,value)
-    BUFF_Attribute_AddValue(ID,'duration',value)
+function BUFF_AddDebuffDuration(ID,value,cap)
+    BUFF_Attribute_AddValue(ID,'duration',value,cap)
 end
 
 function BUFF_SetDebuffDuration(ID,value)
     BUFF_Attribute_SetValue(ID,'duration',value)
 end
 
-function BUFF_Attribute_AddValue(ID,key,value)
-    DEBUFFS[ID][key] = DEBUFFS[ID][key] and DEBUFFS[ID][key] + value or value
+function BUFF_Attribute_AddValue(ID,key,value,cap)
+    local val = DEBUFFS[ID][key] and DEBUFFS[ID][key] + value or value
+    DEBUFFS[ID][key] = val > (cap or val) and cap or val
+    val = nil
 end
 
 function BUFF_Attribute_SetValue(ID,key,value)

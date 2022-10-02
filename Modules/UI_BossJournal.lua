@@ -214,6 +214,15 @@ function BOSS_AtLeastOneDiffAllowed(id)
     return false
 end
 
+function BOSS_AtLeastOneDiffDefeated(id)
+    for i,d in pairs(BOSS_DATA[id].diff.defeated) do
+        if d then
+            return d
+        end
+    end
+    return false
+end
+
 function BOSS_ReLoadWidget(id)
     BOSS_JOURNAL_DATA[id].active = false
     if BOSS_AtLeastOneDiffAllowed(id) then

@@ -18,8 +18,8 @@ MISSLE_DATA = {
     }
     ,fm_Orb = {
         height = 125.0
-        ,scale = 0.7
-        ,model = 'Abilities\\Weapons\\FireBallMissile\\FireBallMissile.mdl'
+        ,scale = 1.4
+        ,model = 'Units\\Human\\HeroBloodElf\\BloodElfBall.mdl'
     }
     ,fm_PhBolt ={
         height = 80.0

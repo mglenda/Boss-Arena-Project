@@ -11,7 +11,7 @@ function BOSS_LoadData()
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Plague Cult'
-            ,Journal_Image = 'war3mapImported\\BTN_Zamidan.dds'
+            ,Journal_Image = 'war3mapImported\\BTN_ZamidanJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -96,6 +96,7 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Shaman'
             ,Journal_Image = 'war3mapImported\\BTN_ThrallJournal.dds'
+            ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_ThrallJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -189,7 +190,8 @@ function BOSS_LoadData()
                 FourCC('U002')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetDruid.dds'
-            ,Journal_Image = 'war3mapImported\\BTN_Druid.dds'
+            ,Journal_Image = 'war3mapImported\\BTN_DruidJournal.dds'
+            ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_DruidJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -259,7 +261,8 @@ function BOSS_LoadData()
                 FourCC('U001')
             }
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetBeastmaster.dds'
-            ,Journal_Image = 'war3mapImported\\BTN_Beastmaster.dds'
+            ,Journal_Image = 'war3mapImported\\BTN_BeastmasterJournal.dds'
+            ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_BeastmasterJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = true

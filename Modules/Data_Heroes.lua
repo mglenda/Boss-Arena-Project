@@ -20,6 +20,10 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_FireMage
         ,Journal_Image = 'war3mapImported\\Mage.dds'
         ,Journal_Title = 'Mage'
+        ,Journal_Difficulty = 'HARD'
+        ,Journal_Type = 'CASTER'
+        ,Journal_Combat = 'RANGED'
+        ,Journal_Description = ''
         ,data_files = {
             bossDifficulties = 'd3be53e7-d38e-409c-954e-90581979d6ab.txt'
             ,bossRecords = 'deaebaf5-5cdb-4079-b223-fd193fd795b5.txt'
@@ -59,7 +63,7 @@ function HERODATA_Load()
             ,A_DISSIPATE = {id = 26,time = 2.0}
         }
     }
-
+    
     HERO_DATA[HERO_WARLOCK] = {
         CreateFunc = CreateWarlock
         ,AB_memoryCleanFunc = AB_Warlock_MemoryClear
@@ -71,6 +75,10 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_Warlock
         ,Journal_Image = 'war3mapImported\\Warlock.dds'
         ,Journal_Title = 'Warlock'
+        ,Journal_Difficulty = 'EASY'
+        ,Journal_Type = 'CASTER'
+        ,Journal_Combat = 'RANGED'
+        ,Journal_Description = 'In the face of demonic power, most heroes see death. Warlock sees only opportunity. This mighty spellcaster tames unstable fel magic and use it\'s power against his enemies. He either crush them in short damage burst periods, or build up overpowered dot debuffs.\n\n Beginner friendly class design with enjoybale pretty straightforward easy-to-learn mechanics. Warlocks only weaknes is lack of sustainable absorb shielding, but is mostly compensated by his huge damage burst windows.'
         ,data_files = {
             bossDifficulties = '7638c47e-3aa9-4849-ad91-ce9534c1b377.txt'
             ,bossRecords = 'f816ef8d-a759-487b-9c7d-445e4f4146dd.txt'
@@ -124,6 +132,9 @@ function HERODATA_Load()
         ,ReadyUpFunc = ReadyUp_Priest
         ,Journal_Image = 'war3mapImported\\Priest.dds'
         ,Journal_Title = 'Priest'
+        ,Journal_Difficulty = 'MEDIUM'
+        ,Journal_Type = 'STRIKER'
+        ,Journal_Combat = 'MELEE'
         ,data_files = {
             bossDifficulties = 'a840cede-792f-47ce-a005-7154482096a1.txt'
             ,bossRecords = '9b9722e2-863b-4816-95b4-747160a75e03.txt'

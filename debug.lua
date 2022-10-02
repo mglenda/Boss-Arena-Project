@@ -56,4 +56,11 @@ function FromatSeconds(time,keepAll)
     return tostring(hours .. minutes .. seconds)
 end
 
-print(FromatSeconds(1212.3,true))
+function BUFF_Attribute_AddValue(value,cap)
+    local val = value * 2
+    val = val > (cap or val) and cap or val
+    return val
+end
+
+
+print(BUFF_Attribute_AddValue(1,3))
