@@ -307,6 +307,7 @@ function Beastmaster_Defeat()
 end
 
 function Beastmaster_Start()
+    BOSS_StartRecordTrigger()
     SetUnitOwner(BOSSES[1], PLAYER_BOSS, true)
     IssueImmediateOrderBJ(BOSSES[1], "unroot")
     DBM_RegisterTimer({

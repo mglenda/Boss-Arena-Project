@@ -80,18 +80,16 @@ function HERO_PolishedAbilities_Cast()
         HERO_AddSpellEffectTarget('left hand',unit,'Abilities\\Spells\\Other\\BreathOfFire\\BreathOfFireDamage.mdl',0.6)
         HERO_AddSpellEffectTarget('right hand',unit,'Abilities\\Spells\\Other\\BreathOfFire\\BreathOfFireDamage.mdl',0.6)
     elseif abCode == ABCODE_HOLYBOLT then
-        HERO_PlayAnimation('A_SPELL_CHANNEL_HAND',unit)
+        HERO_PlayAnimation('A_SPELL',unit,time)
     elseif abCode == ABCODE_SACREDCURSE then
-        HERO_PlayAnimation('A_SPELL_CHANNEL_HAND',unit)
+        HERO_PlayAnimation('A_SPELL',unit)
     elseif abCode == ABCODE_PENANCE then
         HERO_AddSpellEffectTarget('left hand',unit,'Abilities\\Weapons\\PriestMissile\\PriestMissile.mdl',1.5)
     elseif abCode == ABCODE_HOLYNOVA then
         HERO_AddSpellEffectTarget('left hand',unit,'Abilities\\Weapons\\PriestMissile\\PriestMissile.mdl',1.5)
         HERO_AddSpellEffectTarget('right hand',unit,'Abilities\\Weapons\\PriestMissile\\PriestMissile.mdl',1.5)
     elseif abCode == ABCODE_PURIFY then
-        HERO_PlayAnimation('A_SPELL_CHANNEL_FINISH',unit,time)
-        HERO_AddSpellEffectTarget('left hand',unit,'Abilities\\Weapons\\PriestMissile\\PriestMissile.mdl',1.5)
-        HERO_AddSpellEffectTarget('right hand',unit,'Abilities\\Weapons\\PriestMissile\\PriestMissile.mdl',1.5)
+        HERO_PlayAnimation('A_SPELL',unit,time)
     elseif abCode == ABCODE_CHAOSBOLT then
         HERO_AddSpellEffectTarget('left hand',unit,'Abilities\\Spells\\Undead\\Darksummoning\\DarkSummonTarget.mdl',0.4)
         HERO_AddSpellEffectTarget('right hand',unit,'Abilities\\Spells\\Undead\\Darksummoning\\DarkSummonTarget.mdl',0.4)

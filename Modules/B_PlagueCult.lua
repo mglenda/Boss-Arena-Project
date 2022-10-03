@@ -117,6 +117,7 @@ function PlagueCult_IsBossCaster()
 end
 
 function PlagueCult_Start()
+    BOSS_StartRecordTrigger()
     SetUnitOwner(BOSSES[1], PLAYER_BOSS, true)
     SetUnitOwner(BOSSES[2], PLAYER_BOSS, true)
     UNIT_SetDmgImmune(BOSSES[1], true)

@@ -211,6 +211,7 @@ function BOSS_Defeat(id)
     BOSS_DestroyAllTimers()
     BOSS_DestroyAllTimersExclusive()
     DBM_DestroyAll()
+    BOSS_StoreRecords(id,FIGHT_DATA.diff,'wipe')
     BOSS_DATA[id].defeatFunc()
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
@@ -224,6 +225,7 @@ function BOSS_Victory(id)
     BOSS_DestroyAllTimersExclusive()
     DBM_DestroyAll()
     BOSS_ProgressDifficulties(id,FIGHT_DATA.diff)
+    BOSS_StoreRecords(id,FIGHT_DATA.diff,'win')
     BOSS_DATA[id].victoryFunc()
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
@@ -236,11 +238,26 @@ function BOSS_FleeBattle(id)
     BOSS_DestroyAllTimers()
     BOSS_DestroyAllTimersExclusive()
     DBM_DestroyAll()
+    BOSS_StoreRecords(id,FIGHT_DATA.diff,'flee')
     BOSS_DATA[id].fleeFunc()
     FIGHT_DATA = {}
     UNIT_RemoveAllDeads()
     BOSSBAR_Hide()
     HERO_SaveProfile()
+end
+
+function BOSS_StoreRecords(id,diff,type)
+    if type == 'win' then
+        local dps = DamageMeter_GetDps_Total()
+        BOSS_DATA[id].records[diff].record_dps = BOSS_DATA[id].records[diff].record_dps < dps and dps or BOSS_DATA[id].records[diff].record_dps
+        BOSS_DATA[id].records[diff].record_time = (BOSS_DATA[id].records[diff].record_time > FIGHT_DATA.RECORD_DURATION or BOSS_DATA[id].records[diff].record_time == 0) and FIGHT_DATA.RECORD_DURATION or BOSS_DATA[id].records[diff].record_time
+        BOSS_DATA[id].records[diff].record_victories = BOSS_DATA[id].records[diff].record_victories + 1
+        dps = nil
+    elseif type == 'flee' then
+        BOSS_DATA[id].records[diff].record_flees = BOSS_DATA[id].records[diff].record_flees + 1
+    else
+        BOSS_DATA[id].records[diff].record_wipes = BOSS_DATA[id].records[diff].record_wipes + 1
+    end
 end
 
 function BOSS_ProgressDifficulties(id,diff)
@@ -376,9 +393,21 @@ function BOSS_DifficultyChoose()
         BOSS_DATA[index].initFunc(diff)
         WIDGET_LoadAll(index)
         DamageMeter_Reset()
+        FIGHT_DATA.RECORD_DURATION = 0.0
     end
     BlzFrameSetEnable(BlzGetTriggerFrame(), false)
     BlzFrameSetEnable(BlzGetTriggerFrame(), true)
+end
+
+function BOSS_StartRecordTrigger()
+    local trg = CreateBossTrigger()
+    TriggerRegisterTimerEventPeriodic(trg, 0.1)
+    TriggerAddAction(trg, BOSS_DurationCount)
+    trg = nil
+end
+
+function BOSS_DurationCount()
+    FIGHT_DATA.RECORD_DURATION = FIGHT_DATA.RECORD_DURATION + 0.1
 end
 
 function BOSS_ClearTrainingDummies()

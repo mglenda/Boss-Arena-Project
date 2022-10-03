@@ -121,7 +121,7 @@ function HERODATA_Load()
         }
     }
 
-    --[[HERO_DATA[HERO_PRIEST] = {
+    HERO_DATA[HERO_PRIEST] = {
         CreateFunc = CreatePriest
         ,AB_memoryCleanFunc = AB_Priest_MemoryClear
         ,AB_registerFunc = AB_RegisterHero_Priest
@@ -133,25 +133,30 @@ function HERODATA_Load()
         ,Journal_Image = 'war3mapImported\\Priest.dds'
         ,Journal_Title = 'Priest'
         ,Journal_Difficulty = 'MEDIUM'
-        ,Journal_Type = 'STRIKER'
-        ,Journal_Combat = 'MELEE'
+        ,Journal_Type = 'CASTER'
+        ,Journal_Combat = 'RANGED'
+        ,Journal_Description = ''
         ,data_files = {
             bossDifficulties = 'a840cede-792f-47ce-a005-7154482096a1.txt'
             ,bossRecords = '9b9722e2-863b-4816-95b4-747160a75e03.txt'
             ,talents = 'e8902958-992f-4ed5-bb6e-a24cffd4e1b9.txt'
         }
         ,anims = {
-            A_STAND_1 = {id = 0,time = 0}
-            ,A_STAND_2 = {id = 1,time = 4.5}
-            ,A_WALK = {id = 2,time = 0}
-            ,A_TALK = {id = 3,time = 2.0}
-            ,A_SPELL_CHANNEL = {id = 4,time = 0}
-            ,A_SPELL_CHANNEL_FINISH = {id = 5,time = 0.9}
-            ,A_SPELL_CHANNEL_SUMMON = {id = 6,time = 0}
-            ,A_SPELL_CHANNEL_HAND = {id = 7,time = 0}
-            ,A_ATTACK = {id = 8,time = 1.0}
+            A_STAND_1 = {id = 12,time = 0}
+            ,A_STAND_2 = {id = 14,time = 5.87}
+            ,A_WALK = {id = 10,time = 0}
+            ,A_SPELL_THROW = {id = 11, time = 1.0}
+            ,A_FLY = {id = 13, time = 0}
             ,A_SPELL_CHANNEL_POINTING = {id = 9, time = 0}
-            ,A_DEATH = {id = 10,time = 4.17}
+            ,A_SPRINT = {id = 2, time = 0}
+            ,A_SPELL_CHANNEL_BOTH = {id = 5, time = 0}
+            ,A_FLY_START = {id = 7, time = 1.0}
+            ,A_FLY_END = {id = 8,time = 1.0}
+            ,A_SPELL_CHANNEL_UP_START = {id = 3, time = 1.0}
+            ,A_SPELL_CHANNEL_UP = {id = 4,time = 0}
+            ,A_DEATH = {id = 6, time = 1.67}
+            ,A_ATTACK_SPIN = {id = 1,time = 1.33}
+            ,A_SPELL = {id = 0, time = 0.8}
         }
         ,PopUps = {
             [1] = {
@@ -161,7 +166,7 @@ function HERODATA_Load()
                 ,key = 'blessed'
             }
         }
-    }]]--
+    }
 
 
     HERODATA_Load = nil

@@ -90,6 +90,7 @@ function Druid_LakeEnter()
 end
 
 function Druid_Start()
+    BOSS_StartRecordTrigger()
     SetUnitOwner(BOSSES[1], PLAYER_BOSS, true)
     MS_Unfreeze(BOSSES[1])
     DBM_RegisterTimer({

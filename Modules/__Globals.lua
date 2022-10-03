@@ -36,6 +36,23 @@ BOSS_DIFFICULTIES = {
     ,BOSS_DIFFICULTY_HEROIC
     ,BOSS_DIFFICULTY_MYTHIC
 }
+BOSS_DIFFICULTY_TEXTURES = {
+    [BOSS_DIFFICULTY_NORMAL] = {
+        active = 'war3mapImported\\BTN_NormalDiff.dds'
+        ,done = 'war3mapImported\\BTN_NormalDoneDiff.dds'
+        ,disable = 'war3mapImported\\DISBTN_NormalDiff.dds'
+    }
+    ,[BOSS_DIFFICULTY_HEROIC] = {
+        active = 'war3mapImported\\BTN_Heroic.dds'
+        ,done = 'war3mapImported\\BTN_HeroicDone.dds'
+        ,disable = 'war3mapImported\\DISBTN_Heroic.dds'
+    }
+    ,[BOSS_DIFFICULTY_MYTHIC] = {
+        active = 'war3mapImported\\BTN_Mythic.dds'
+        ,done = 'war3mapImported\\BTN_MythicDone.dds'
+        ,disable = 'war3mapImported\\DISBTN_Mythic.dds'
+    }
+}
 
 BOSS_BEASTMASTER_ID = 1
 BOSS_DRUID_ID = 2

@@ -96,6 +96,7 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Shaman'
             ,Journal_Image = 'war3mapImported\\BTN_ThrallJournal.dds'
+            ,Journal_ImagePushed = 'war3mapImported\\BTN_ThrallJournalPushed.dds'
             ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_ThrallJournal.dds'
             ,diff = {
                 avail = {
@@ -192,6 +193,7 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetDruid.dds'
             ,Journal_Image = 'war3mapImported\\BTN_DruidJournal.dds'
             ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_DruidJournal.dds'
+            ,Journal_ImagePushed = 'war3mapImported\\BTN_DruidJournalPushed.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false
@@ -263,6 +265,7 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetBeastmaster.dds'
             ,Journal_Image = 'war3mapImported\\BTN_BeastmasterJournal.dds'
             ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_BeastmasterJournal.dds'
+            ,Journal_ImagePushed = 'war3mapImported\\BTN_BeastmasterJournalPushed.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = true

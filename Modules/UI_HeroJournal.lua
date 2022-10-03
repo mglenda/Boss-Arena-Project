@@ -5,7 +5,9 @@ HERO_JOURNAL_NAME = nil
 HERO_JOURNAL_BUTTON_CHOOSE = nil
 HERO_JOURNAL_BUTTON_NEXT = nil
 HERO_JOURNAL_TRIGGER_CLICK = CreateTrigger()
-HERO_JOURNAL_TRGGGER_BOSS_CLICK = CreateTrigger()
+HERO_JOURNAL_TRIGGER_BOSS_CLICK = CreateTrigger()
+HERO_JOURNAL_TRIGGER_BOSS_CLEAN = CreateTrigger()
+HERO_JOURNAL_ACTIVE_BOSS = nil
 HERO_JOURNAL_INDEXES = {}
 HERO_JOURNAL_WIDGETS = {}
 HERO_JOURNAL_TYPES = {
@@ -86,7 +88,8 @@ end
 function UI_HeroJournal_Flush()
     BlzDestroyFrame(HERO_JOURNAL_MAINFRAME)
     DestroyTrigger(HERO_JOURNAL_TRIGGER_CLICK)
-    DestroyTrigger(HERO_JOURNAL_TRGGGER_BOSS_CLICK)
+    DestroyTrigger(HERO_JOURNAL_TRIGGER_BOSS_CLICK)
+    DestroyTrigger(HERO_JOURNAL_TRIGGER_BOSS_CLEAN)
 
     HERO_JOURNAL_MAINFRAME = nil
     HERO_JOURNAL_IMAGE = nil
@@ -94,16 +97,18 @@ function UI_HeroJournal_Flush()
     HERO_JOURNAL_BUTTON_CHOOSE = nil
     HERO_JOURNAL_BUTTON_NEXT = nil
     HERO_JOURNAL_TRIGGER_CLICK = nil
-    HERO_JOURNAL_TRGGGER_BOSS_CLICK = nil
+    HERO_JOURNAL_TRIGGER_BOSS_CLICK = nil
     HERO_JOURNAL_INDEXES = nil
     HERO_JOURNAL_WIDGETS = nil
     UI_HeroJournal_LoadData = nil
     UI_HeroJournal_Inject = nil
     UI_HeroJournal_Next = nil
-    UI_HeroJournal_CreateRecordsWidget = nil
-    UI_HeroJournal_CreateRecordsWidgets = nil
     UI_HeroJournal_PositionateBossWidgets = nil
     HERO_JOURNAL_TYPES = nil
+    HERO_JOURNAL_ACTIVE_BOSS = nil
+    UI_HeroJournal_ActivateBoss = nil
+    UI_HeroJournal_DeactivateBoss = nil
+    HERO_JOURNAL_TRIGGER_BOSS_CLEAN = nil
 
     UI_HeroJournal_Flush = nil
 end
@@ -131,12 +136,25 @@ function UI_HeroJournal_Inject(h_id)
     BOSS_RecalculateDifficulties()
 
     for b_id,v in ipairs(BOSS_DATA) do
-        if BOSS_AtLeastOneDiffDefeated(b_id) then
-            BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_Image, 0, true)
-            BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], true)
+        if b_id == HERO_JOURNAL_ACTIVE_BOSS then
+            if BOSS_AtLeastOneDiffDefeated(b_id) then
+                UI_HeroJournal_ActivateBoss(b_id)
+                BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], true)
+            else
+                if BlzFrameIsVisible(HERO_JOURNAL_WIDGETS.canvas_Records) then
+                    BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.canvas_Records, false)
+                end
+                BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_ImageDisabled, 0, true)
+                BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], false)
+            end
         else
-            BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_ImageDisabled, 0, true)
-            BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], false)
+            if BOSS_AtLeastOneDiffDefeated(b_id) then
+                BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_Image, 0, true)
+                BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], true)
+            else
+                BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_ImageDisabled, 0, true)
+                BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], false)
+            end
         end
     end
 end
@@ -144,57 +162,6 @@ end
 function UI_HeroJournal_LoadData()
     for i,v in pairs(HERO_DATA) do
         table.insert(HERO_JOURNAL_INDEXES,i)
-    end
-end
-
-function UI_HeroJournal_CreateRecordsWidget(b_id)
-    local r_tbl = {
-        [BOSS_DIFFICULTY_HEROIC] = {}
-        ,[BOSS_DIFFICULTY_NORMAL] = {}
-        ,[BOSS_DIFFICULTY_MYTHIC] = {}
-        ,mainFrame = BlzCreateSimpleFrame('RecordWidget_BossImage', HERO_JOURNAL_MAINFRAME, b_id)
-    }
-
-    local bossImg = BlzGetFrameByName("RecordWidget_BossImageTexture", b_id)
-    
-    BlzFrameSetTexture(bossImg, BOSS_DATA[b_id].Journal_Image, 0, true)
-
-    r_tbl[BOSS_DIFFICULTY_HEROIC].mainFrame = BlzCreateSimpleFrame('RecordWidget_DiffImage', r_tbl.mainFrame, b_id * 10 + BOSS_DIFFICULTY_HEROIC)
-
-    BlzFrameSetPoint(r_tbl[BOSS_DIFFICULTY_HEROIC].mainFrame, FRAMEPOINT_LEFT, r_tbl.mainFrame, FRAMEPOINT_RIGHT, 0, 0)
-    BlzFrameSetTexture(BlzGetFrameByName("RecordWidget_DiffImageTexture", b_id * 10 + BOSS_DIFFICULTY_HEROIC), 'war3mapImported\\BTN_Heroic.dds', 0, true)
-
-    r_tbl[BOSS_DIFFICULTY_NORMAL].mainFrame = BlzCreateSimpleFrame('RecordWidget_DiffImage', r_tbl.mainFrame, b_id * 10 + BOSS_DIFFICULTY_NORMAL)
-
-    BlzFrameSetPoint(r_tbl[BOSS_DIFFICULTY_NORMAL].mainFrame, FRAMEPOINT_BOTTOM, r_tbl[BOSS_DIFFICULTY_HEROIC].mainFrame, FRAMEPOINT_TOP, 0, 0)
-    BlzFrameSetTexture(BlzGetFrameByName("RecordWidget_DiffImageTexture", b_id * 10 + BOSS_DIFFICULTY_NORMAL), 'war3mapImported\\BTN_NormalDiff.dds', 0, true)
-
-    r_tbl[BOSS_DIFFICULTY_MYTHIC].mainFrame = BlzCreateSimpleFrame('RecordWidget_DiffImage', r_tbl.mainFrame, b_id * 10 + BOSS_DIFFICULTY_MYTHIC)
-
-    BlzFrameSetPoint(r_tbl[BOSS_DIFFICULTY_MYTHIC].mainFrame, FRAMEPOINT_TOP, r_tbl[BOSS_DIFFICULTY_HEROIC].mainFrame, FRAMEPOINT_BOTTOM, 0, 0)
-    BlzFrameSetTexture(BlzGetFrameByName("RecordWidget_DiffImageTexture", b_id * 10 + BOSS_DIFFICULTY_MYTHIC), 'war3mapImported\\BTN_Mythic.dds', 0, true)
-
-    for _,i in pairs(BOSS_DIFFICULTIES) do
-        r_tbl[i].timeFrame = BlzCreateSimpleFrame('RecordWidget_Text', r_tbl.mainFrame, b_id * 100 + i + 10)
-        r_tbl[i].timeText = BlzGetFrameByName("RecordWidget_Text_String", b_id * 100 + i + 10)
-        BlzFrameSetPoint(r_tbl[i].timeFrame, FRAMEPOINT_LEFT, r_tbl[i].mainFrame, FRAMEPOINT_RIGHT, 0.0025, 0)
-
-        r_tbl[i].dpsFrame = BlzCreateSimpleFrame('RecordWidget_Text', r_tbl.mainFrame, b_id * 100 + i + 20)
-        r_tbl[i].dpsText = BlzGetFrameByName("RecordWidget_Text_String", b_id * 100 + i + 20)
-        BlzFrameSetPoint(r_tbl[i].dpsFrame, FRAMEPOINT_LEFT, r_tbl[i].timeFrame, FRAMEPOINT_RIGHT, 0.0025, 0)
-
-        BlzFrameSetText(r_tbl[i].timeText, '')
-        BlzFrameSetText(r_tbl[i].dpsText, '')
-    end
-
-    HERO_JOURNAL_WIDGETS[b_id] = r_tbl
-
-    bossImg,r_tbl = nil,nil
-end
-
-function UI_HeroJournal_CreateRecordsWidgets()
-    for i,_ in ipairs(BOSS_DATA) do
-        UI_HeroJournal_CreateRecordsWidget(i)
     end
 end
 
@@ -285,21 +252,123 @@ function UI_CreateHeroJournal()
     for b_id,v in ipairs(BOSS_DATA) do
         HERO_JOURNAL_WIDGETS.boss_buttons[b_id] = BlzCreateSimpleFrame('HeroJournal_BossButton', canvas_Bosses, b_id)
         BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), v.Journal_Image, 0, true)
-        BlzFrameSetEnable( HERO_JOURNAL_WIDGETS.boss_buttons[b_id], false)
+        BlzFrameSetEnable(HERO_JOURNAL_WIDGETS.boss_buttons[b_id], false)
+        BlzTriggerRegisterFrameEvent(HERO_JOURNAL_TRIGGER_BOSS_CLICK, HERO_JOURNAL_WIDGETS.boss_buttons[b_id], FRAMEEVENT_CONTROL_CLICK)
     end
+
+    TriggerAddAction(HERO_JOURNAL_TRIGGER_BOSS_CLICK, function()
+        local frame = BlzGetTriggerFrame()
+        for b_id,b in pairs(HERO_JOURNAL_WIDGETS.boss_buttons) do
+            if b == frame then
+                if b_id == HERO_JOURNAL_ACTIVE_BOSS then
+                    UI_HeroJournal_DeactivateBoss()
+                else
+                    UI_HeroJournal_ActivateBoss(b_id)
+                end
+            end
+        end
+        frame = nil
+    end)
+
+    BlzTriggerRegisterPlayerKeyEvent(HERO_JOURNAL_TRIGGER_BOSS_CLEAN,PLAYER,OSKEY_ESCAPE,KEY_PRESSED_NONE,true)
+    TriggerAddAction(HERO_JOURNAL_TRIGGER_BOSS_CLEAN,UI_HeroJournal_DeactivateBoss)
 
     UI_HeroJournal_PositionateBossWidgets(canvas_Bosses)
 
-    local canvas4 = BlzCreateSimpleFrame('HeroJournal_Canvas', HERO_JOURNAL_MAINFRAME, 3)
+    HERO_JOURNAL_WIDGETS.canvas_Records = BlzCreateSimpleFrame('HeroJournal_Canvas', HERO_JOURNAL_MAINFRAME, 3)
 
-    BlzFrameSetPoint(canvas4, FRAMEPOINT_LEFT, canvas_Bosses, FRAMEPOINT_RIGHT, 0.04, 0) 
+    BlzFrameSetPoint(HERO_JOURNAL_WIDGETS.canvas_Records, FRAMEPOINT_LEFT, canvas_Bosses, FRAMEPOINT_RIGHT, 0.04, 0)
 
-    BlzFrameSetSize(canvas4, 0.3, 0.225)
+    BlzFrameSetSize(HERO_JOURNAL_WIDGETS.canvas_Records, 0.3, 0.225)
+    BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.canvas_Records, false)
 
-    --UI_HeroJournal_CreateRecordsWidgets()
+    local normalDiff = BlzCreateSimpleFrame('HeroJournal_Record_DiffImage', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_NORMAL)
+    local heroicDiff = BlzCreateSimpleFrame('HeroJournal_Record_DiffImage', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_HEROIC)
+    local mythicDiff = BlzCreateSimpleFrame('HeroJournal_Record_DiffImage', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_MYTHIC)
+
+    local normal_DPS = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_NORMAL)
+    local heroic_DPS = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_HEROIC)
+    local mythic_DPS = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_MYTHIC)
+
+    local normal_time = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_NORMAL * 10)
+    local heroic_time = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_HEROIC * 10)
+    local mythic_time = BlzCreateSimpleFrame('HeroJournal_Record_Image', HERO_JOURNAL_WIDGETS.canvas_Records, BOSS_DIFFICULTY_MYTHIC * 10)
+
+    HERO_JOURNAL_WIDGETS.records_Widgets = {
+        [BOSS_DIFFICULTY_NORMAL] = {
+            texture = BlzGetFrameByName("HeroJournal_Record_DiffImageTexture", BOSS_DIFFICULTY_NORMAL)
+            ,dps = normal_DPS
+            ,time = normal_time
+            ,main = normalDiff
+            ,dps_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_NORMAL)
+            ,time_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_NORMAL * 10)
+        }
+        ,[BOSS_DIFFICULTY_HEROIC] = {
+            texture = BlzGetFrameByName("HeroJournal_Record_DiffImageTexture", BOSS_DIFFICULTY_HEROIC)
+            ,dps = heroic_DPS
+            ,time = heroic_time
+            ,main = heroicDiff
+            ,dps_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_HEROIC)
+            ,time_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_HEROIC * 10)
+        }
+        ,[BOSS_DIFFICULTY_MYTHIC] = {
+            texture = BlzGetFrameByName("HeroJournal_Record_DiffImageTexture", BOSS_DIFFICULTY_MYTHIC)
+            ,dps = mythic_DPS
+            ,time = mythic_time
+            ,main = mythicDiff
+            ,dps_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_MYTHIC)
+            ,time_text = BlzGetFrameByName("HeroJournal_Record_ImageText", BOSS_DIFFICULTY_MYTHIC * 10)
+        }
+    }
+
+    BlzFrameSetPoint(normalDiff, FRAMEPOINT_TOPLEFT, HERO_JOURNAL_WIDGETS.canvas_Records, FRAMEPOINT_TOPLEFT, 0.028, -0.015)
+    BlzFrameSetPoint(heroicDiff, FRAMEPOINT_LEFT, normalDiff, FRAMEPOINT_RIGHT, 0.026, 0)
+    BlzFrameSetPoint(mythicDiff, FRAMEPOINT_LEFT, heroicDiff, FRAMEPOINT_RIGHT, 0.026, 0)
+
+    for i,v in pairs(HERO_JOURNAL_WIDGETS.records_Widgets) do
+        BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_Record_ImageTexture", i), 'war3mapImported\\HeroJournal_DPS.dds', 0, true)
+        BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_Record_ImageTexture", i * 10), 'war3mapImported\\HeroJournal_TIME.dds', 0, true)
+        BlzFrameSetPoint(v.time, FRAMEPOINT_TOP, v.main, FRAMEPOINT_BOTTOM, 0, -0.03)
+        BlzFrameSetPoint(v.dps, FRAMEPOINT_TOP, v.time, FRAMEPOINT_BOTTOM, 0, -0.03)
+    end
 
     heroImage,mainTexture,heroName,canvas_Description,diffCaption,diffImage,typeCaption,typeImage,combatCaption,combatImage,canvas_Legend,legendFrame = nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil
+    normalDiff,heroicDiff,mythicDiff = nil,nil,nil
+    normal_DPS,heroic_DPS,mythic_DPS = nil,nil,nil
+    normal_time,heroic_time,mythic_time = nil,nil,nil
     UI_CreateHeroJournal = nil
+end
+
+function UI_HeroJournal_ActivateBoss(b_id)
+    if HERO_JOURNAL_ACTIVE_BOSS and HERO_JOURNAL_ACTIVE_BOSS ~= b_id then
+        BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", HERO_JOURNAL_ACTIVE_BOSS), BOSS_DATA[HERO_JOURNAL_ACTIVE_BOSS].Journal_Image, 0, true)
+    end
+    if not(BlzFrameIsVisible(HERO_JOURNAL_WIDGETS.canvas_Records)) then
+        BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.canvas_Records, true)
+    end
+    BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", b_id), BOSS_DATA[b_id].Journal_ImagePushed, 0, true)
+    for d_id,rec in pairs(BOSS_DATA[b_id].records) do
+        if rec.record_time > 0 then
+            BlzFrameSetTexture(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].texture, BOSS_DIFFICULTY_TEXTURES[d_id].active, 0, true)
+            BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].dps, true)
+            BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].time, true)
+            BlzFrameSetText(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].time_text, FromatSeconds(rec.record_time,true))
+            BlzFrameSetText(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].dps_text, strRound(rec.record_dps,0))
+        else
+            BlzFrameSetTexture(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].texture, BOSS_DIFFICULTY_TEXTURES[d_id].disable, 0, true)
+            BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].dps, false)
+            BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.records_Widgets[d_id].time, false)
+        end
+    end
+    HERO_JOURNAL_ACTIVE_BOSS = b_id
+end
+
+function UI_HeroJournal_DeactivateBoss()
+    if BlzFrameIsVisible(HERO_JOURNAL_WIDGETS.canvas_Records) then
+        BlzFrameSetVisible(HERO_JOURNAL_WIDGETS.canvas_Records, false)
+    end
+    BlzFrameSetTexture(BlzGetFrameByName("HeroJournal_BossButtonTexture", HERO_JOURNAL_ACTIVE_BOSS), BOSS_DATA[HERO_JOURNAL_ACTIVE_BOSS].Journal_Image, 0, true)
+    HERO_JOURNAL_ACTIVE_BOSS = nil
 end
 
 function UI_HeroJournal_PositionateBossWidgets(canvas)

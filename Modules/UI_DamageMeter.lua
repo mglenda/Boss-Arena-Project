@@ -57,7 +57,7 @@ function DamageMeter_Initiate()
     frame = BlzCreateSimpleFrame("DamageMeter_AbilityFrameDMG", DMGMETER_SUMMARY_FRAME, DMGMETER_SUMMARY_INDEX)
     BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_SUMMARY_FRAME, FRAMEPOINT_LEFT, 0.05, 0)
     frame = BlzCreateSimpleFrame("DamageMeter_AbilityFrameDPS", DMGMETER_SUMMARY_FRAME, DMGMETER_SUMMARY_INDEX)
-    BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_SUMMARY_FRAME, FRAMEPOINT_LEFT, 0.13, 0)
+    BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_SUMMARY_FRAME, FRAMEPOINT_LEFT, 0.125, 0)
 
     DMGMETER_SUMMARY_FRAME_DMG = BlzGetFrameByName("DamageMeter_AbilityFrameDMG_Text", DMGMETER_SUMMARY_INDEX)
     DMGMETER_SUMMARY_FRAME_DPS = BlzGetFrameByName("DamageMeter_AbilityFrameDPS_Text", DMGMETER_SUMMARY_INDEX)
@@ -145,7 +145,7 @@ function DamageMeter_AddAbility(abCode)
         BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_ABFRAMES_CONTAINER[abCode].frame, FRAMEPOINT_LEFT, 0.05, 0)
         frame = BlzCreateSimpleFrame("DamageMeter_AbilityFrameDPS", DMGMETER_ABFRAMES_CONTAINER[abCode].frame, abCode)
         DMGMETER_ABFRAMES_CONTAINER[abCode].dps = frame
-        BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_ABFRAMES_CONTAINER[abCode].frame, FRAMEPOINT_LEFT, 0.13, 0)
+        BlzFrameSetPoint(frame, FRAMEPOINT_LEFT, DMGMETER_ABFRAMES_CONTAINER[abCode].frame, FRAMEPOINT_LEFT, 0.125, 0)
         BlzFrameSetTexture(BlzGetFrameByName('DamageMeter_AbilityFrameIconTexture', abCode), ABILITIES_DATA[abCode].ICON, 0, true)
     else
         BlzFrameSetVisible(DMGMETER_ABFRAMES_CONTAINER[abCode].frame, true)
@@ -153,6 +153,12 @@ function DamageMeter_AddAbility(abCode)
 end
 
 function DamageMeter_Sort_TotalOnly()
+    local dmg_total = DamageMeter_GetDamage_Total()
+    BlzFrameSetText(DMGMETER_SUMMARY_FRAME_DPS, 'DPS: ' .. math.floor(dmg_total/DMGMETER_COMBAT_DURATION == 1 and 0 or dmg_total/DMGMETER_COMBAT_DURATION))
+    BlzFrameSetText(DMGMETER_SUMMARY_FRAME_DMG, 'DMG: ' .. math.floor(dmg_total))
+end
+
+function DamageMeter_GetDamage_Total()
     local id = GetHandleIdBJ(HERO)
     local type_id = GetUnitTypeId(HERO)
     local dmg_total = 0
@@ -161,8 +167,12 @@ function DamageMeter_Sort_TotalOnly()
             dmg_total = dmg_total + dmgFactor_Data[id][v].dmgDone_Meter
         end
     end
-    BlzFrameSetText(DMGMETER_SUMMARY_FRAME_DPS, 'DPS: ' .. math.floor(dmg_total/DMGMETER_COMBAT_DURATION == 1 and 0 or dmg_total/DMGMETER_COMBAT_DURATION))
-    BlzFrameSetText(DMGMETER_SUMMARY_FRAME_DMG, 'DMG: ' .. math.floor(dmg_total))
+    return dmg_total
+end
+
+function DamageMeter_GetDps_Total()
+    local dmg_total = DamageMeter_GetDamage_Total()
+    return math.floor(dmg_total/DMGMETER_COMBAT_DURATION == 1 and 0 or dmg_total/DMGMETER_COMBAT_DURATION)
 end
 
 function DamageMeter_Sort()

@@ -150,9 +150,9 @@ function BOSS_WidgetShowDifficulties(id)
         BlzFrameSetEnable(BOSS_JOURNAL_DATA[id].hButton, false)
     end
 
-    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].nButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_NORMAL] and 'war3mapImported\\BTN_NormalDoneDiff.dds' or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_NORMAL] and 'war3mapImported\\BTN_NormalDiff.dds' or 'war3mapImported\\DISBTN_NormalDiff.dds'), 0, true)
-    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].hButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_HEROIC] and 'war3mapImported\\BTN_HeroicDone.dds' or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_HEROIC] and 'war3mapImported\\BTN_Heroic.dds' or 'war3mapImported\\DISBTN_Heroic.dds'), 0, true)
-    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].mButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_MYTHIC] and 'war3mapImported\\BTN_MythicDone.dds' or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_MYTHIC] and 'war3mapImported\\BTN_Mythic.dds' or 'war3mapImported\\DISBTN_Mythic.dds'), 0, true)
+    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].nButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_NORMAL] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_NORMAL].done or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_NORMAL] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_NORMAL].active or BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_NORMAL].disable), 0, true)
+    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].hButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_HEROIC] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_HEROIC].done or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_HEROIC] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_HEROIC].active or BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_HEROIC].disable), 0, true)
+    BlzFrameSetTexture(BOSS_JOURNAL_DATA[id].mButtonTexture,BOSS_DATA[id].diff.defeated[BOSS_DIFFICULTY_MYTHIC] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_MYTHIC].done or (BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_MYTHIC] and BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_MYTHIC].active or BOSS_DIFFICULTY_TEXTURES[BOSS_DIFFICULTY_MYTHIC].disable), 0, true)
 
     if BOSS_DATA[id].diff.avail[BOSS_DIFFICULTY_MYTHIC] then
         BlzFrameSetVisible(BOSS_JOURNAL_DATA[id].mButton, true) 

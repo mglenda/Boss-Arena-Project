@@ -94,6 +94,7 @@ function Shaman_Init(diff)
 end
 
 function Shaman_Start()
+    BOSS_StartRecordTrigger()
     SetUnitOwner(BOSSES[1], PLAYER_BOSS, true)
     MS_Unfreeze(BOSSES[1])
     local enrage_time = FIGHT_DATA.diff >= BOSS_DIFFICULTY_HEROIC and 840.0 or 840.0
