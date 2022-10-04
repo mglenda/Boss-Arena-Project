@@ -12,6 +12,8 @@ function BOSS_LoadData()
             ,BACKGROUND = 'war3mapImported\\Boss_WidgetThrall.dds'
             ,name = 'Plague Cult'
             ,Journal_Image = 'war3mapImported\\BTN_ZamidanJournal.dds'
+            ,Journal_ImagePushed = 'war3mapImported\\BTN_ThrallJournalPushed.dds'
+            ,Journal_ImageDisabled = 'war3mapImported\\DISBTN_ThrallJournal.dds'
             ,diff = {
                 avail = {
                     [BOSS_DIFFICULTY_NORMAL] = false

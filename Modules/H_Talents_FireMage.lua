@@ -88,7 +88,7 @@ function TALENTS_Load_FireMage()
                 ,ICON_PUSHED = 'war3mapImported\\BTN_KeeperPushed.dds'
                 ,ICON_DISABLED = 'war3mapImported\\DISBTN_Keeper.dds'
             }
-            ,[5] = {
+            --[[,[5] = {
                 LevelRequired = 9
                 ,ApplyFunc = function() 
                     AB_SetTalentsModifier(ABCODE_BOLTSOFPHOENIX,'Protector',2)
@@ -216,7 +216,7 @@ function TALENTS_Load_FireMage()
                 ,ICON = 'war3mapImported\\BTN_Scorchmaster.dds'
                 ,ICON_PUSHED = 'war3mapImported\\BTN_ScorchmasterPushed.dds'
                 ,ICON_DISABLED = 'war3mapImported\\DISBTN_Scorchmaster.dds'
-            }
+            }]]--
         }
         ,[2] = {
             [1] = {
@@ -291,7 +291,7 @@ function TALENTS_Load_FireMage()
                 ,ICON_PUSHED = 'war3mapImported\\BTN_BursterPushed.dds'
                 ,ICON_DISABLED = 'war3mapImported\\DISBTN_Burster.dds'
             }
-            ,[5] = {
+            --[[,[5] = {
                 LevelRequired = 9
                 ,ApplyFunc = function() 
                     AB_SetTalentsModifier(ABCODE_BOLTSOFPHOENIX,'Defender',1.4)
@@ -415,7 +415,7 @@ function TALENTS_Load_FireMage()
                 ,ICON = 'war3mapImported\\BTN_GodOfBlast.dds'
                 ,ICON_PUSHED = 'war3mapImported\\BTN_GodOfBlastPushed.dds'
                 ,ICON_DISABLED = 'war3mapImported\\DISBTN_GodOfBlast.dds'
-            }
+            }]]--
         }
     }
     TALENTS_Flush_FireMage = nil

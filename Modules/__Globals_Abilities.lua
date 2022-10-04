@@ -616,6 +616,20 @@ function RegisterAbilitiesData()
             end
             ,TAG_color = TAG_clLightBrown
         }
+        ,[ABCODE_PURGINGFLAMES] = {
+            Name = 'Purging Flames'
+            ,ICON = 'war3mapImported\\BTN_FireNova.dds'
+            ,ICON_PUSHED = 'war3mapImported\\BTN_FireNovaPushed.dds'
+            ,ICON_DISABLED = 'war3mapImported\\DISBTN_FireNova.dds'
+            ,ICON_FOCUSED = 'war3mapImported\\BTN_FireNovaFocused.dds'
+            ,CastingTime = 0.5
+            ,Range = 2500.00
+            ,UI_SHORTCUT = UI_SHORTCUT_X
+            ,TARGET_TYPE = AB_TARGET_UNIT
+            ,barTheme = DBM_BAR_clDARKGREEN
+            ,TAG_color = TAG_clLightGreen
+            ,TAG_color_abs = TAG_clLightGreen
+        }
         ,[ABCODE_ORBOFFIREDOT] = {
             Name = 'Living Bomb DOT'
             ,CastingTime = 1.0
@@ -704,20 +718,6 @@ function RegisterAbilitiesData()
             ,noInterrupt = true
             ,IsPassive = true
             ,barTheme = DBM_BAR_clDARKGREEN
-        }
-        ,[ABCODE_PURGINGFLAMES] = {
-            Name = 'Purging Flames'
-            ,ICON = 'war3mapImported\\BTN_FireNova.dds'
-            ,ICON_PUSHED = 'war3mapImported\\BTN_FireNovaPushed.dds'
-            ,ICON_DISABLED = 'war3mapImported\\DISBTN_FireNova.dds'
-            ,ICON_FOCUSED = 'war3mapImported\\BTN_FireNovaFocused.dds'
-            ,CastingTime = 0.5
-            ,Range = 2500.00
-            ,UI_SHORTCUT = UI_SHORTCUT_X
-            ,TARGET_TYPE = AB_TARGET_UNIT
-            ,barTheme = DBM_BAR_clDARKGREEN
-            ,TAG_color = TAG_clLightGreen
-            ,TAG_color_abs = TAG_clLightGreen
         }
         ,[ABCODE_TOTEMS_ACTIVATE] = {
             Name = 'Call the Elements'
