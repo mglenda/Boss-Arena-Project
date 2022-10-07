@@ -293,6 +293,26 @@ function BUFF_UnfreezeDurationAllStacks(unit,debuff_name)
     end
 end
 
+function BUFF_GetRemainingTime_Unit(unit,debuff_name)
+    local tbl = {}
+    for i, v in pairs(DEBUFFS) do
+        if v.target == unit and v.name == debuff_name then
+            table.insert(tbl,BUFF_GetRemainingTime(i))
+        end
+    end
+    table.sort(tbl, function (k1, k2) return k1 > k2 end)
+    return tbl[1] or -1
+end
+
+function BUFF_GetRemainingTime(ID)
+    local duration = BUFF_Attribute_GetValue(ID,'duration')
+    if not(duration) then
+        return -1
+    end
+    local curTime = BUFF_Attribute_GetValue(ID,'curTime')
+    return duration - curTime
+end
+
 function BUFF_FreezeDuration(ID)
     BUFF_Attribute_SetValue(ID,'pauseCounter',true)
 end
@@ -321,6 +341,10 @@ end
 
 function BUFF_Attribute_SetValue(ID,key,value)
     DEBUFFS[ID][key] = value
+end
+
+function BUFF_Attribute_GetValue(ID,key)
+    return DEBUFFS[ID][key]
 end
 
 function BUFF_Initialize()
@@ -478,6 +502,7 @@ function BUFF_AddDebuff_Stack(debuff_Data)
         debuff_Data.ABILITIES_CASTTIME = debuff_Data.ABILITIES_CASTTIME or DEBUFFS_DATA[debuff_Data.name].ABILITIES_CASTTIME
         debuff_Data.curTick = debuff_Data.curTick or 0.0
         debuff_Data.notDispellable = debuff_Data.notDispellable or DEBUFFS_DATA[debuff_Data.name].notDispellable
+        debuff_Data.notCancelable = debuff_Data.notCancelable or DEBUFFS_DATA[debuff_Data.name].notCancelable
         debuff_Data.pauseCounter = debuff_Data.pauseCounter or false
         debuff_Data.seed = debuff_Data.seed or BUFF_GenerateSeed()
         

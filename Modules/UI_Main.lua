@@ -199,6 +199,7 @@ function UI_RefreshDetails()
     BlzFrameSetText(HERO_DETAILS_DATA.stats.stat_dmgText,Get_UnitBaseDamage(HERO))
 
     UI_RefreshBuffs(HERO,HERO_DETAILS_DATA.buffs)
+    UI_BuffPanel_LoadDebuffs()
 end
 
 function UI_EnergyBar_ChangeTheme_Hero(theme)

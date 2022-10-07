@@ -189,10 +189,22 @@ function FromatSeconds(time,keepAll)
     time = time - math.floor(time/10)*10
     hours = (hours > 0 and strRound(hours,0) .. ':' or (keepAll and '00:' or ''))
     hours = (hours:len() == 2 and keepAll) and '0' .. hours or hours
-    seconds = (minutes == '0' and seconds or ("0"..seconds):sub(-2)) .. '.' .. strRound(time,0)
+    seconds = ((minutes == '0' and not(keepAll)) and seconds or ("0"..seconds):sub(-2)) .. '.' .. strRound(time,0)
     minutes = (minutes == '0' and (keepAll and '00:' or '') or minutes .. ':')
     minutes = (minutes:len() == 2 and keepAll) and '0' .. minutes or minutes
     return tostring(hours .. minutes .. seconds)
+end
+
+function FormatSecondsMinutes(time)
+    time = time > 0 and time * 10 or 0
+    local minutes = strRound(time / 600,0)
+    time = time - math.floor(time/600)*600
+    local seconds = strRound(time / 10,0)
+    time = time - math.floor(time/10)*10
+    seconds = (minutes == '0' and seconds or ("0"..seconds):sub(-2)) .. '.' .. strRound(time,0)
+    minutes = (minutes == '0' and '' or minutes .. ':')
+    minutes = minutes:len() == 2 and '0' .. minutes or minutes
+    return tostring(minutes .. seconds)
 end
 
 function strRound(value,decplaces)
