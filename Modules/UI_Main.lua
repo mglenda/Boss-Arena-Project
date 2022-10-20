@@ -639,6 +639,75 @@ function UI_RefreshAbilityIconState(abCode)
     i = nil
 end
 
+function UI_HideDetails()
+    TARGET = nil
+    BlzFrameSetVisible(HERO_DETAILS_DATA.mainFrame,false)
+    BlzFrameSetVisible(TARGET_DETAILS_DATA.mainFrame,false)
+end
+
+function UI_ShowDetails()
+    BlzFrameSetVisible(HERO_DETAILS_DATA.mainFrame,true)
+    if TARGET then
+        BlzFrameSetVisible(TARGET_DETAILS_DATA.mainFrame,true)
+    end
+end
+
+function UI_HideMeter()
+    BlzFrameSetVisible(DMGMETER_FRAME, false)
+end
+
+function UI_ShowMeter()
+    BlzFrameSetVisible(DMGMETER_FRAME, true)
+end
+
+function UI_HidePortrait()
+    BlzFrameSetVisible(BlzGetFrameByName("Hero_Portrait", 0), false)
+end
+
+function UI_ShowPortrait()
+    BlzFrameSetVisible(BlzGetFrameByName("Hero_Portrait", 0), true)
+end
+
+function UI_HideBuffPanel()
+    BlzFrameSetVisible(BUFF_PANEL_FRAME, false)
+end
+
+function UI_ShowBuffPanel()
+    BlzFrameSetVisible(BUFF_PANEL_FRAME, true)
+end
+
+function UI_Hide()
+    UI_HideDetails()
+    UI_HideAbilities()
+    BOSS_HideJournalButton()
+    UI_HideMeter()
+    UI_HidePortrait()
+    UI_HideBuffPanel()
+end
+
+function UI_Show()
+    UI_ShowDetails()
+    UI_ShowAbilities()
+    BOSS_ShowJournalButton()
+    UI_ShowMeter()
+    UI_ShowPortrait()
+    UI_ShowBuffPanel()
+end
+
+function UI_HideAbilities()
+    for i,ui in pairs(UI_ABILITIES) do
+        BlzFrameSetVisible(ui.mainFrame,false)
+        BlzFrameSetVisible(ui.border,false)
+    end
+end
+
+function UI_ShowAbilities()
+    for i,ui in pairs(UI_ABILITIES) do
+        BlzFrameSetVisible(ui.mainFrame,true)
+        BlzFrameSetVisible(ui.border,true)
+    end
+end
+
 function UI_LoadAbilities(hero_type,stance)
     UI_LoadStance(hero_type,stance)
     for i,ui in pairs(UI_ABILITIES) do

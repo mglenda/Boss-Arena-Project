@@ -49,5 +49,17 @@ function test_keyboard()
         end
     end)
 
+
+    trig = CreateTrigger()
+    TriggerRegisterPlayerChatEvent(trig, Player(0), "show", true)
+    TriggerRegisterPlayerChatEvent(trig, Player(0), "hide", true)
+    TriggerAddAction(trig, function()
+        if GetEventPlayerChatString() == "show" then
+            UI_BossLegendShow(BOSS_BEASTMASTER_ID)
+        elseif GetEventPlayerChatString() == "hide" then
+            UI_BossLegendHide()
+        end
+    end)
+
     test_keyboard = nil
 end

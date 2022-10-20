@@ -1,8 +1,12 @@
 BUFF_PANEL = {}
+BUFF_PANEL_FRAME = nil
 BUFF_PANEL_TRIGGER = CreateTrigger()
 
 function UI_BuffPanel_CreateButton(data)
-    local button = BlzCreateSimpleFrame('BuffPanel_Button', BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0)
+    if not(BUFF_PANEL_FRAME) then
+        BUFF_PANEL_FRAME = BlzCreateSimpleFrame('BuffPanel_Container',BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0)
+    end
+    local button = BlzCreateSimpleFrame('BuffPanel_Button', BUFF_PANEL_FRAME, 0)
     local text = BlzGetFrameByName('BuffPanel_Button_Text', 0)
     local time = BlzCreateSimpleFrame('BuffPanel_Time', button, 0)
     local timeText = BlzGetFrameByName('BuffPanel_Time_Text', 0)

@@ -25,6 +25,7 @@ function MapSetup_AfterHero()
     TALENTS_ApplyProfilerData()
     flush_profiler()
 
+    UI_BossLegend_Initialize()
     PanCameraToTimedForPlayer(PLAYER, START_X, START_Y, 0.0)
     MapSetup_AfterHero = nil
 end     
