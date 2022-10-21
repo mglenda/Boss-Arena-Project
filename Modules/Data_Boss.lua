@@ -281,6 +281,7 @@ function BOSS_LoadData()
                 }
             }
             ,name = 'Beastmaster'
+            ,Legend_Texture = 'war3mapImported\\Beastmaster.dds'
             ,regions = {
                 arena = {
                     Rect(-14528.0, 11840.0, -11712.0, 14368.0)
