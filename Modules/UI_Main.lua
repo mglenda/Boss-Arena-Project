@@ -640,7 +640,7 @@ function UI_RefreshAbilityIconState(abCode)
 end
 
 function UI_HideDetails()
-    TARGET = nil
+    TT_ClearTarget()
     BlzFrameSetVisible(HERO_DETAILS_DATA.mainFrame,false)
     BlzFrameSetVisible(TARGET_DETAILS_DATA.mainFrame,false)
 end
@@ -677,6 +677,7 @@ function UI_ShowBuffPanel()
 end
 
 function UI_Hide()
+    TT_DisableTargeting()
     UI_HideDetails()
     UI_HideAbilities()
     BOSS_HideJournalButton()
@@ -692,6 +693,7 @@ function UI_Show()
     UI_ShowMeter()
     UI_ShowPortrait()
     UI_ShowBuffPanel()
+    TT_EnableTargeting()
 end
 
 function UI_HideAbilities()

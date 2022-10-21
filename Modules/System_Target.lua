@@ -6,6 +6,8 @@ PLAYER_MOUSELOC_X,PLAYER_MOUSELOC_Y = nil,nil
 PLAYER_MOUSELOC_TRIGGER = CreateTrigger()
 PLAYER_QUICKCAST_ENABLED = true
 TARGET_ABILITY = FourCC('TARG')
+TARGET_TRIGGER_ATTACK = CreateTrigger()
+TARGET_TRIGGER_SELECT = CreateTrigger()
 
 function TT_LoadTargetingSystem()
     TT_Register_SelectionEvent()
@@ -23,11 +25,20 @@ function TT_LoadTargetingSystem()
     TT_LoadTargetingSystem = nil
 end
 
+function TT_DisableTargeting()
+    DisableTrigger(TARGET_TRIGGER_SELECT)
+    DisableTrigger(TARGET_TRIGGER_ATTACK)
+end
+
+function TT_EnableTargeting()
+    EnableTrigger(TARGET_TRIGGER_SELECT)
+    EnableTrigger(TARGET_TRIGGER_ATTACK)
+end
+
 function TT_RegisterAttackOrder()
-    local trg = CreateTrigger()
-    TriggerRegisterAnyUnitEventBJ(trg, EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER)
-    TriggerAddCondition(trg,Condition(function() return ((GetIssuedOrderIdBJ() == String2OrderIdBJ("attack") or GetIssuedOrderIdBJ() == String2OrderIdBJ("smart")) and GetOrderedUnit() == HERO) end))
-    TriggerAddAction(trg, function()
+    TriggerRegisterAnyUnitEventBJ(TARGET_TRIGGER_ATTACK, EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER)
+    TriggerAddCondition(TARGET_TRIGGER_ATTACK,Condition(function() return ((GetIssuedOrderIdBJ() == String2OrderIdBJ("attack") or GetIssuedOrderIdBJ() == String2OrderIdBJ("smart")) and GetOrderedUnit() == HERO) end))
+    TriggerAddAction(TARGET_TRIGGER_ATTACK, function()
         TT_MakeUnit_Target(GetOrderTargetUnit())
     end)
 end
@@ -96,9 +107,8 @@ function TT_ClearTarget()
 end
 
 function TT_Register_SelectionEvent()
-    local trg = CreateTrigger()
-    TriggerRegisterPlayerSelectionEventBJ(trg, PLAYER, true)
-    TriggerAddAction(trg, function()
+    TriggerRegisterPlayerSelectionEventBJ(TARGET_TRIGGER_SELECT, PLAYER, true)
+    TriggerAddAction(TARGET_TRIGGER_SELECT, function()
         if GetTriggerUnit() ~= HERO then
             TT_MakeUnit_Target(GetTriggerUnit())
         end
